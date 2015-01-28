@@ -10,7 +10,11 @@ class String_Ex
 	int len;
 	char * ptr;
 	public:
-	String_Ex(char *str):ptr(str),len(strlen(str)){}
+	String_Ex(char *str):len(strlen(str))
+	{
+		ptr = new char[len];
+		strcpy(ptr,str);
+	}
 	String_Ex():ptr(NULL),len(0){}
 	char *getString(){return ptr;};
 	int getLen(){return len;};
@@ -25,6 +29,11 @@ class String_Ex
 		//temp.ptr = &a[0];
 		temp.len+=str.len;
 		return temp;
+	}
+	~String_Ex()
+	{
+		delete ptr;
+		cout<<"deleted ptr"<<endl;
 	}
 };
 
@@ -41,6 +50,7 @@ int main() {
 	char b[10]="World";
 	String_Ex cd(&b[0]);
 	cout<<ab;
+	cout<<cd;
 	String_Ex temp = ab+cd;
 	cout<<temp<<endl;
 	return 0;
