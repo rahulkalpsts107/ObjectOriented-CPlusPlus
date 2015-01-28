@@ -17,11 +17,12 @@ class String_Ex
 	String_Ex  operator+(String_Ex & str)
 	{
 		String_Ex temp;
-		char a[(this->getLen())+(str.getLen())+2];
+		char *a = new char[(this->getLen())+(str.getLen())+2];
 		temp.ptr = &a[0];
 		temp.len = strlen(this->ptr);
-		strcpy(temp.ptr,this->ptr);
-		strcat(temp.ptr,str.ptr);
+		strcpy(a,this->ptr);
+		strcat(a,str.ptr);
+		//temp.ptr = &a[0];
 		temp.len+=str.len;
 		return temp;
 	}
